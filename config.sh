@@ -170,4 +170,4 @@ EOM
 )
 
 # Output the configuration file
-echo "$config_content" > /home/ubuntu/relaying-strfry/strfry.conf
+echo "$config_content" > /tmp/strfry.conf
