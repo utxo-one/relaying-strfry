@@ -18,8 +18,12 @@ for value in "${values[@]}"; do
 done
 
 # Convert the associative array to JSON
-json_output=$(declare -p json_array)
-json_output=${json_output#*=}
+json_output="{"
+for key in "${!json_array[@]}"; do
+  json_output+="\"$key\": ${json_array[$key]},"
+done
+json_output=${json_output%,*} # Remove the trailing comma
+json_output+="}"
 
 # Output the JSON to the whitelist.json file
 echo "$json_output" > /home/ubuntu/relaying-strfry/whitelist.json
