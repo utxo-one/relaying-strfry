@@ -11,25 +11,21 @@ while [[ $# -gt 0 ]]; do
     key="$1"
 
     case $key in
-        --name)
-            name="$2"
-            shift # past argument
-            shift # past value
+        --name=*)
+            name="${key#*=}"
+            shift # past argument=value
             ;;
-        --description)
-            description="$2"
-            shift # past argument
-            shift # past value
+        --description=*)
+            description="${key#*=}"
+            shift # past argument=value
             ;;
-        --pubkey)
-            pubkey="$2"
-            shift # past argument
-            shift # past value
+        --pubkey=*)
+            pubkey="${key#*=}"
+            shift # past argument=value
             ;;
-        --contact)
-            contact="$2"
-            shift # past argument
-            shift # past value
+        --contact=*)
+            contact="${key#*=}"
+            shift # past argument=value
             ;;
         *) # unknown option
             shift # past argument
@@ -170,4 +166,4 @@ EOM
 )
 
 # Output the configuration file
-echo "$config_content" > /tmp/strfry.conf
+echo "$config_content" > /home/ubuntu/relaying-strfry/strfry.conf
