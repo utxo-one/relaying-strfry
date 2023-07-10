@@ -5,6 +5,7 @@ name="strfry default"
 description="This is a strfry instance."
 pubkey="unset"
 contact="unset"
+port=80
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -25,6 +26,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --contact=*)
             contact="${key#*=}"
+            shift # past argument=value
+            ;;
+        --port=*)
+            port="${key#*=}"
             shift # past argument=value
             ;;
         *) # unknown option
@@ -78,7 +83,7 @@ relay {
     bind = "0.0.0.0"
 
     # Port to open for the nostr websocket protocol (restart required)
-    port = 80
+    port = $port
 
     # Set OS-limit on maximum number of open files/sockets (if 0, don't attempt to set) (restart required)
     nofiles = 1000000
