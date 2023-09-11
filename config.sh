@@ -45,7 +45,7 @@ config_content=$(cat <<EOM
 ##
 
 # Directory that contains the strfry LMDB database (restart required)
-db = "./strfry-db/"
+db = "/var/lib/strfry/"
 
 dbParams {
     # Maximum number of threads/processes that can simultaneously have LMDB transactions open (restart required)
@@ -86,7 +86,7 @@ relay {
     port = $port
 
     # Set OS-limit on maximum number of open files/sockets (if 0, don't attempt to set) (restart required)
-    nofiles = 1000000
+    nofiles = 500000
 
     # HTTP header that contains the client's real IP, before reverse proxying (ie x-real-ip) (MUST be all lower-case)
     realIpHeader = ""
@@ -125,7 +125,7 @@ relay {
 
     writePolicy {
         # If non-empty, path to an executable script that implements the writePolicy plugin logic
-        plugin = "./whitelist.js"
+        plugin = "/var/lib/strfry/whitelist.js"
 
         # Number of seconds to search backwards for lookback events when starting the writePolicy plugin (0 for no lookback)
         lookbackSeconds = 0
@@ -171,4 +171,4 @@ EOM
 )
 
 # Output the configuration file
-echo "$config_content" > /home/ubuntu/relaying-strfry/strfry.conf
+echo "$config_content" > /etc/strfry.conf

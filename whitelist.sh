@@ -26,4 +26,4 @@ json_output=${json_output%,*} # Remove the trailing comma
 json_output+="}"
 
 # Output the JSON to the whitelist.json file
-echo "$json_output" > /home/ubuntu/relaying-strfry/whitelist.json
+echo "$json_output" > /var/lib/strfry/whitelist.json
